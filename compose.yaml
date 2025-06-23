@@ -23,6 +23,8 @@ services:
       context: ./api/
     networks:
       - cat-pinterest-net
+    env_file:
+      - ./api/.env
     environment:
       NODE_ENV: prod
     depends_on:
@@ -34,6 +36,8 @@ services:
     image: cat-pinterest-front
     build:
       context: ./front/
+    env_file:
+      - ./front/.env
     networks:
       - cat-pinterest-net
     environment:
@@ -50,7 +54,7 @@ services:
       POSTGRES_DB: catsdb
     #      PG_DATA: /var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U cats_app" ]
+      test: [ "CMD-SHELL", "pg_isready -U cats_app -d catsdb" ]
       interval: 2s
       timeout: 5s
       retries: 10

@@ -1,7 +1,7 @@
 import React from "react"
 import {useLikeContext} from "../contexts/LikesContext.tsx";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const API_BASE = '/api';
 type ChildProps = { cat_id: string }
 export const CatCard: React.FC<ChildProps> = ({cat_id}) => {
     const {favoriteCats, setFavoriteCats} = useLikeContext()
